@@ -1,4 +1,4 @@
-from persona import Profesor, Alumno, Investigador
+from persona import Persona, Profesor, Alumno, Investigador
 from organizacion import Asignatura, Departamento
 
 class Universidad:
@@ -15,31 +15,51 @@ class Universidad:
         self.ualumnos.append(nuevo_alumno)
         return nuevo_alumno
 
-    def add_profesor(self, dni, nombre, direccion, sexo, dep):
-        nuevo_profesor = Profesor(dni, nombre, direccion, sexo, dep)
-        self.uprofesores.append(nuevo_profesor)
-        return nuevo_profesor
+    def add_profesor(self, dni, nombre, direccion, sexo, dep, area = None):
+        if area is None:    
+            nuevo_profesor = Profesor(dni, nombre, direccion, sexo, dep)
+            self.uprofesores.append(nuevo_profesor)
+            return nuevo_profesor
+        elif  isinstance(area, Departamento):
+            print("Un profesor solo puede tener un departamento")
+        else:
+            nuevo_profesor = Investigador(dni, nombre, direccion, sexo, dep, area)
+            self.uprofesores.append(nuevo_profesor)
+            return nuevo_profesor
     
     def add_asignatura(self, nombre, creditos=6):
         nueva_asignatura = Asignatura(nombre, creditos)
         self.uasignaturas.append(nueva_asignatura)
         return nueva_asignatura
 
-    def add_departamento(self, nombre):
-        nuevo_departamento = Departamento(nombre)
-        self.udepartamentos.append(nuevo_departamento)
-        return nuevo_departamento
+    def add_departamentos(self):
+        """Solo se permiten estos departamentos: DIIC, DITEC, DIS. Ejemplo de uso: dep1, dep2, dep3 = upct.add_departamentos()"""
+        DIIC = Departamento("DIIC")
+        DITEC = Departamento("DITEC")
+        DIS = Departamento("DIS")
+        self.udepartamentos.append(DIIC)
+        self.udepartamentos.append(DITEC)
+        self.udepartamentos.append(DIS)
+        return DIIC, DITEC, DIS
     
     def asignar_persona_asignatura(self, persona, asignatura):
-        persona.asignar_asignatura(asignatura)
+        if isinstance(persona, Persona):
+            persona.asignar_asignatura(asignatura)
 
     def desasignar_persona_asignatura(self, persona, asignatura):
-        persona.desasignar_asignatura(asignatura)
+        if isinstance(persona, Persona):
+            persona.desasignar_asignatura(asignatura)
 
-#   def cambiar_profesor_dep(self, profesor, nuevo_dep):
-#       profesor.dep.departamento_quitar(profesor)
-#       nuevo_dep.departamento_añadir(profesor)
-#       profesor.dep = nuevo_dep
+    def cambiar_profesor_dep(self, profesor, nuevo_dep):
+        if isinstance(profesor, Profesor):
+            if isinstance(nuevo_dep, Departamento):
+                profesor.dep.departamento_quitar(profesor)
+                nuevo_dep.departamento_añadir(profesor)
+                profesor.dep = nuevo_dep
+            else:
+                print("El segundo parámetro debe ser un departamento")
+        else:
+            print("El primer parámetro debe ser un profesor")
         
     def cambiar_investigador_area(self, investigador, nueva_area):
         if isinstance(investigador, Investigador):

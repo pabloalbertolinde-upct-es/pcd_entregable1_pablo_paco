@@ -1,6 +1,3 @@
-#from organizador_universidad.persona import Persona
-#from organizacion import Asignatura, Departamento
-
 class Persona:
 
     def __init__(self, dni, nombre, direccion, sexo):
@@ -34,15 +31,16 @@ class Persona:
         else:
             print(self.nombre_per, "no tenia esa asignatura.")
     
-    def mostrar_asignaturas(self):
-        print(f"las asignaturas de {self.nombre_per} son: "+", ".join(str(asignatura.nombre_as) for asignatura in self.asignaturas_asignadas))
-   
+    def mostrar_asignaturas_persona(self):
+        """Si quieres ver las asignaturas de una persona, usa este método dentro de un print."""
+        return f"las asignaturas de {self.nombre_per} son: "+", ".join(str(asignatura.nombre_as) for asignatura in self.asignaturas_asignadas)
+
     def __str__(self):
         a = ''
         a += 'Nombre: '+ self.nombre_per
         a += ", DNI: " + self.dni
         a += ", Dirección: " + self.direccion
-        a += ", Asignaturas asignadas: " + self.mostrar_asignaturas()
+        a += ", Asignaturas asignadas: " + self.mostrar_asignaturas_persona()
         if isinstance(self, Profesor):
             a += ", Departamento: " + self.dep.nombre_dep
         if isinstance(self, Investigador):

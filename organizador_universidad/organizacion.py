@@ -16,10 +16,6 @@ class Asignatura:
                 self.alumnos.append(persona)
             elif isinstance(persona, Profesor):
                 self.profesore_as.append(persona)
-            else:
-                print('El objeto no es una instancia de la clase Alumno ni profesor')
-        else:
-            pass
 
     def asignatura_quitar(self, persona):
         """Agrega un profesor o alumno a la asignatura"""
@@ -27,8 +23,6 @@ class Asignatura:
             self.alumnos.remove(persona)
         elif isinstance(persona, Profesor) and persona in self.profesore_as:
             self.profesore_as.remove(persona)
-        else:
-            print('El objeto no es una instancia de la clase Alumno ni profesor')
         
     def mostrar_profesores(self):
         """Muestra los profesores de esta asignatura"""
