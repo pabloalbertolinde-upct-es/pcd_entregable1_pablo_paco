@@ -11,13 +11,16 @@ class Persona:
         """
         Desasigna a la persona de todas sus asignaturas y departamento si es profesor.
         """
+        
         for asignatura in self.asignaturas_asignadas:
+            print(asignatura.nombre_as)
             self.desasignar_asignatura(asignatura)
         if isinstance(self, Profesor):
-            print("ha llegado")
+            
             self.dep.departamento_quitar(self)
 
     def asignar_asignatura(self, asignatura):
+        """asigna una asignatura"""
         if asignatura not in self.asignaturas_asignadas:
             self.asignaturas_asignadas.append(asignatura)
             asignatura.asignatura_añadir(self)
@@ -25,6 +28,7 @@ class Persona:
             print(self.nombre_per, "ya tenia esa asignatura.")
     
     def desasignar_asignatura(self, asignatura):
+        """desasigna la asignatura"""
         if asignatura in self.asignaturas_asignadas:
             self.asignaturas_asignadas.remove(asignatura)
             asignatura.asignatura_quitar(self)
@@ -32,10 +36,11 @@ class Persona:
             print(self.nombre_per, "no tenia esa asignatura.")
     
     def mostrar_asignaturas_persona(self):
-        """Si quieres ver las asignaturas de una persona, usa este método dentro de un print."""
+        """Si quieres ver las asignaturas de una persona, use este método dentro de un print."""
         return f"las asignaturas de {self.nombre_per} son: "+", ".join(str(asignatura.nombre_as) for asignatura in self.asignaturas_asignadas)
 
     def __str__(self):
+        """Se habilita el print de la instancia"""
         a = ''
         a += 'Nombre: '+ self.nombre_per
         a += ", DNI: " + self.dni
@@ -52,7 +57,16 @@ class Persona:
 class Alumno(Persona):
     def __init__(self, dni, nombre, direccion, sexo):
         Persona.__init__(self, dni, nombre, direccion, sexo)
-
+        self.asignaturas_aprobadas =  [] 
+        
+    def aprobar_asignatura(self, asignatura):
+        """Añade una asignatura en la lista de asignaturas aprobadas"""
+        if  asignatura in self.asignaturas_asignadas:
+            self.desasignar_asignatura(asignatura) # Quitamos la asignatura del alumno
+            self.asignaturas_aprobadas.append(asignatura)   # Y añadimos a las aprobadas
+        else:
+            raise TypeError("El alumno no estaba cursando esa asignatura")
+        
 #-----------------------------------------------
         
 class Profesor(Persona): 
@@ -62,7 +76,7 @@ class Profesor(Persona):
         self.dep = dep
         dep.departamento_añadir(self)
 
-    # def cambio_dep(self, dep):
+    
         
 class Investigador(Profesor): 
 
@@ -71,6 +85,7 @@ class Investigador(Profesor):
         self.area = area
 
     def cambio_area(self, area):
+        """cambia el area del investigador"""
         self.area = area
 
 #--------------------------------------------------------------------------------------------

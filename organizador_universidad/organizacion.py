@@ -1,4 +1,4 @@
-from persona import Profesor, Alumno, Investigador
+from persona import Profesor, Alumno
 
 class Asignatura:
 
@@ -41,6 +41,7 @@ class Asignatura:
         return a
     
     def __str__(self):
+        """Hablita el print"""
         salida=''
         salida += 'Nombre: '+ self.nombre_as
         salida += ', créditos: ' + str(self.creditos)
@@ -82,6 +83,7 @@ class Departamento:
             print('El objeto no es una instancia de profesor')
         
     def __str__(self):
+        """Hablita el print"""
         salida=''
         salida += 'Nombre: '+ self.nombre_dep
         salida += ', (Profesores: '

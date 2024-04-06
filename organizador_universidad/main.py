@@ -11,11 +11,13 @@ class Universidad:
         self.udepartamentos=[]
 
     def add_alumno(self, dni, nombre, direccion, sexo):
+        """Añade un alumno"""
         nuevo_alumno = Alumno(dni, nombre, direccion, sexo)
         self.ualumnos.append(nuevo_alumno)
         return nuevo_alumno
 
     def add_profesor(self, dni, nombre, direccion, sexo, dep, area = None):
+        """Añade un profesor"""
         if area is None:    
             nuevo_profesor = Profesor(dni, nombre, direccion, sexo, dep)
             self.uprofesores.append(nuevo_profesor)
@@ -28,6 +30,7 @@ class Universidad:
             return nuevo_profesor
     
     def add_asignatura(self, nombre, creditos=6):
+        """Añade una asignatura"""
         nueva_asignatura = Asignatura(nombre, creditos)
         self.uasignaturas.append(nueva_asignatura)
         return nueva_asignatura
@@ -43,14 +46,17 @@ class Universidad:
         return DIIC, DITEC, DIS
     
     def asignar_persona_asignatura(self, persona, asignatura):
+        """asigna alumnos a una asignatura"""
         if isinstance(persona, Persona):
             persona.asignar_asignatura(asignatura)
 
     def desasignar_persona_asignatura(self, persona, asignatura):
+        """desasigna alumnos a una asignatura"""
         if isinstance(persona, Persona):
             persona.desasignar_asignatura(asignatura)
 
     def cambiar_profesor_dep(self, profesor, nuevo_dep):
+        """cambia un profesor de departamento"""
         if isinstance(profesor, Profesor):
             if isinstance(nuevo_dep, Departamento):
                 profesor.dep.departamento_quitar(profesor)
@@ -62,6 +68,7 @@ class Universidad:
             print("El primer parámetro debe ser un profesor")
         
     def cambiar_investigador_area(self, investigador, nueva_area):
+        """cambia un investigador de area"""
         if isinstance(investigador, Investigador):
             if not isinstance(nueva_area, Departamento):
                 investigador.cambio_area(nueva_area)
@@ -71,13 +78,25 @@ class Universidad:
             print("El profesor no es titular")
 
     def borrar(self, persona):
+        "borra una persona del sistema"
         if isinstance(persona, Profesor):
-            self.uprofesores.remove(persona)
-            self.udepartamentos.remove(persona)     
+            print("Eliminando profesor...")
+            self.uprofesores.remove(persona)           
+            persona.abandona_universidad()
+            persona.abandona_universidad()
+            
         elif isinstance(persona, Alumno):
+            print("alumno abandona universidad")
+            persona.abandona_universidad()
+            persona.abandona_universidad()
             self.ualumnos.remove(persona)
-        persona.abandona_universidad()
+            
+            
+        
+        del persona
+    
 
+    #-------------------------------Los siguientes metodos muestran un tipo de instancia especifica
     def mostrar_alumnos(self):
         print(f"Los alumnos de {self.nombre_uni} son: "+", ".join(str(alumno.nombre_per) for alumno in self.ualumnos))
     
@@ -89,3 +108,52 @@ class Universidad:
     
     def mostrar_departametos(self):
         print(f"Los departamentos de {self.nombre_uni} son: "+", ".join(str(dep.nombre_dep) for dep in self.udepartamentos))
+
+    #Se ha decidido que print de universidad sea un resumen del sistema por la claridad del usuario
+
+    def __str__(self):
+        """permite hacer un print de la instancia"""
+        informacion="Resumen de " + self.nombre_uni +"\n\n"
+
+        departamentos =  "Departamentos:\n\n" 
+
+        indep=""
+        for departamento in self.udepartamentos:
+            indep += departamento.nombre_dep + ":\nLos profesores del departamento son:\n\n"
+            for profesor in departamento.profesores_dep:
+                indep += profesor.nombre_per + "\n"
+            indep += "--------------------\n\n"
+            
+        informacion += departamentos + indep + "Asignaturas:\n\n"
+        asig= ""
+        
+        for asignatura in self.uasignaturas:
+            asig+= asignatura.nombre_as + ":\nEL/Los profesores de la asignatura son:\n\n"
+            for profesor in asignatura.profesore_as:
+                asig += profesor.nombre_per + "\n"
+
+            asig+="\nLos alumnos de la asignatura son:\n\n"
+
+            for alumno in asignatura.alumnos:
+                asig += alumno.nombre_per + "\n"
+            asig+="\n"
+        informacion += asig+ "\n----------------------\n\nProfesores: \n\n"
+
+        per = ""
+        for profesor in self.uprofesores:
+            per += profesor.nombre_per + "\n"
+
+        per +="\n------------\n\nAlumnos:\n\n"
+
+        for alumno in self.ualumnos:
+            per += alumno.nombre_per + "\n"
+
+        informacion += per
+            
+
+        return informacion
+    
+        
+
+    
+        

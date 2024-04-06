@@ -1,6 +1,6 @@
 from main import Universidad
 from organizacion import Departamento, Asignatura
-from persona import Persona, Profesor, Alumno, Investigador
+from persona import Profesor, Alumno, Investigador
 import pytest as tst
 
 
@@ -40,3 +40,10 @@ def test_profesor_departamentos():
     with tst.raises(ValueError):
         upct.cambiar_investigador_area(prueba_cambio_area, dep2)
 
+def test_aprobar_asignatura():
+    """comprueba el metodo aprobar_asignatura de alumno"""
+    upct = Universidad("UPCT")
+    alumno_prueba = upct.add_alumno("dni", "prueba", "calle prueba", "Masculino")
+    asignatura_prueba = upct.add_asignatura("prueba")
+    with tst.raises(TypeError):
+        alumno_prueba.aprobar_asignatura(asignatura_prueba)
