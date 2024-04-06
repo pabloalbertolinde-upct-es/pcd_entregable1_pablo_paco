@@ -27,7 +27,7 @@ Matematicas = upct.add_asignatura("Matematicas")
 Sistemas = upct.add_asignatura("Sistemas")
 Calculo = upct.add_asignatura("Calculo")
 programacion = upct.add_asignatura("Programacion")
-poo = upct.add_asignatura("Programacion")
+
 
 
 #------Alumnos
@@ -97,12 +97,24 @@ agueda.aprobar_asignatura(Matematicas)
 upct.desasignar_persona_asignatura(lucas, programacion)
 upct.cambiar_profesor_dep(p_bea, dep3)
 
+upct.borrar(mario)
+upct.borrar(i_paco)
 
 
-prueba = upct.add_alumno("dni prueba", "prueba", "calle prueba", "prueba")
-upct.asignar_persona_asignatura(prueba, Calculo) 
-upct.asignar_persona_asignatura(prueba, programacion) 
-upct.asignar_persona_asignatura(prueba, Sistemas) 
-upct.asignar_persona_asignatura(prueba, poo) 
-upct.asignar_persona_asignatura(prueba, Matematicas) 
+print(" \n--------------------------\nsegundo print\n--------------------------")
+
+print(upct)
+
+print("\n\n\n")
+
+#ahora mostraremos los profesores, los alumnos, las asignaturas y los departamentos por separado
+
+upct.mostrar_alumnos()
+upct.mostrar_asignaturas()
+upct.mostrar_departametos()
+upct.mostrar_profesores()
+
+upct.asignar_persona_asignatura(i_paco, Matematicas)
+
+print(i_paco)
 

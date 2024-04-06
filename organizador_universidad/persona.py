@@ -7,18 +7,29 @@ class Persona:
         self.sexo = sexo
         self.asignaturas_asignadas=[]
     
+    #haciendo unos metodos generales para profesores, Investigador y Alumnos 
+    #hacemos el codigo mucho mas corto
+
     def abandona_universidad(self):
         """
         Desasigna a la persona de todas sus asignaturas y departamento si es profesor.
-        """
-        
+        """        
+        # se hace en dos bucles for para que no haya problemas de referencias
+        print(len(self.asignaturas_asignadas))
+        a=[]
         for asignatura in self.asignaturas_asignadas:
+            a.append(asignatura)
+
+        for asignatura in a:            
+            
             print(asignatura.nombre_as)
             self.desasignar_asignatura(asignatura)
-        if isinstance(self, Profesor):
-            
+
+        if isinstance(self, Profesor) or isinstance(self, Investigador):
             self.dep.departamento_quitar(self)
 
+        
+  
     def asignar_asignatura(self, asignatura):
         """asigna una asignatura"""
         if asignatura not in self.asignaturas_asignadas:

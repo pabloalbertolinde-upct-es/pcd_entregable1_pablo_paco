@@ -47,7 +47,8 @@ class Universidad:
     
     def asignar_persona_asignatura(self, persona, asignatura):
         """asigna alumnos a una asignatura"""
-        if isinstance(persona, Persona):
+
+        if isinstance(persona, Persona) and (persona in self.ualumnos or persona in self.uprofesores):
             persona.asignar_asignatura(asignatura)
 
     def desasignar_persona_asignatura(self, persona, asignatura):
@@ -83,17 +84,16 @@ class Universidad:
             print("Eliminando profesor...")
             self.uprofesores.remove(persona)           
             persona.abandona_universidad()
-            persona.abandona_universidad()
+            
             
         elif isinstance(persona, Alumno):
             print("alumno abandona universidad")
             persona.abandona_universidad()
-            persona.abandona_universidad()
             self.ualumnos.remove(persona)
             
+        if  isinstance(persona, Persona):
+            del persona
             
-        
-        del persona
     
 
     #-------------------------------Los siguientes metodos muestran un tipo de instancia especifica
