@@ -26,7 +26,7 @@ class Asignatura:
         
     def mostrar_profesores(self):
         """Muestra los profesores de esta asignatura"""
-        a='los profesores de esta asignatura son:'
+        a='Los profesores de ' + self.nombre_as + ' son:'
         for p in self.profesore_as:
             a += '\n'
             a += p.nombre_per
@@ -34,14 +34,14 @@ class Asignatura:
     
     def mostrar_alumnos(self):
         """Muestra los alumnos de esta asignatura"""
-        a='los alumnos matriculados son:'
+        a='Los alumnos matriculados de ' + self.nombre_as + ' son:'
         for p in self.alumnos:
             a += '\n'
             a += p.nombre_per
         return a
     
     def __str__(self):
-        """Hablita el print"""
+        """Habilita el print"""
         salida=''
         salida += 'Nombre: '+ self.nombre_as
         salida += ', créditos: ' + str(self.creditos)
@@ -66,7 +66,6 @@ class Departamento:
         """Agrega un profesor al departamento."""
         if persona in self.profesores_dep:
             print ("El profesor ya pertenecia al departamento")
-            pass
         elif isinstance(persona, Profesor):
             self.profesores_dep.append(persona)
         else:
@@ -83,12 +82,9 @@ class Departamento:
             print('El objeto no es una instancia de profesor')
         
     def __str__(self):
-        """Hablita el print"""
+        """Habilita el print"""
         salida=''
         salida += 'Nombre: '+ self.nombre_dep
         salida += ', (Profesores: '
         salida += ', '.join([str(p.nombre_per) for p in self.profesores_dep]) + ')'
         return salida
-    
-#--------------------------------------------------------
-    

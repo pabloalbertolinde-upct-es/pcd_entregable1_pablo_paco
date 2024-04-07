@@ -3,7 +3,6 @@ from organizacion import Departamento, Asignatura
 from persona import Profesor, Alumno, Investigador
 import pytest as tst
 
-
 def test_clases():
     """Esta funcion comprobara que la clase Universidad crea de manera correcta todas las instancias"""
     upct=Universidad("UPCT")

@@ -7,29 +7,21 @@ class Persona:
         self.sexo = sexo
         self.asignaturas_asignadas=[]
     
-    #haciendo unos metodos generales para profesores, Investigador y Alumnos 
-    #hacemos el codigo mucho mas corto
+    # Haciendo unos metodos generales para profesores, Investigador y Alumnos hacemos el codigo mucho mas corto
 
     def abandona_universidad(self):
         """
-        Desasigna a la persona de todas sus asignaturas y departamento si es profesor.
+        Desasigna a la persona de todas sus asignaturas y departamento si es profesor, 
+        se hace en dos bucles for para que no haya problemas de referencias
         """        
-        # se hace en dos bucles for para que no haya problemas de referencias
-        print(len(self.asignaturas_asignadas))
         a=[]
         for asignatura in self.asignaturas_asignadas:
             a.append(asignatura)
-
-        for asignatura in a:            
-            
-            print(asignatura.nombre_as)
+        for asignatura in a:                        
             self.desasignar_asignatura(asignatura)
-
         if isinstance(self, Profesor) or isinstance(self, Investigador):
             self.dep.departamento_quitar(self)
 
-        
-  
     def asignar_asignatura(self, asignatura):
         """asigna una asignatura"""
         if asignatura not in self.asignaturas_asignadas:
@@ -73,10 +65,14 @@ class Alumno(Persona):
     def aprobar_asignatura(self, asignatura):
         """Añade una asignatura en la lista de asignaturas aprobadas"""
         if  asignatura in self.asignaturas_asignadas:
-            self.desasignar_asignatura(asignatura) # Quitamos la asignatura del alumno
-            self.asignaturas_aprobadas.append(asignatura)   # Y añadimos a las aprobadas
+            self.desasignar_asignatura(asignatura) #Quitamos la asignatura del alumno
+            self.asignaturas_aprobadas.append(asignatura) #La añadimos a las aprobadas
         else:
             raise TypeError("El alumno no estaba cursando esa asignatura")
+        
+    def mostrar_asignaturas_aprobadas(self):
+        """Si quieres ver las asignaturas aprobadas de un alumno, use este método dentro de un print."""
+        return f"Las asignaturas aprobadas de {self.nombre_per} son: "+", ".join(str(asignatura.nombre_as) for asignatura in self.asignaturas_aprobadas)
         
 #-----------------------------------------------
         
@@ -86,9 +82,7 @@ class Profesor(Persona):
         Persona.__init__(self, dni, nombre, direccion, sexo)
         self.dep = dep
         dep.departamento_añadir(self)
-
-    
-        
+  
 class Investigador(Profesor): 
 
     def __init__(self, dni, nombre, direccion, sexo, dep, area):
@@ -98,5 +92,3 @@ class Investigador(Profesor):
     def cambio_area(self, area):
         """cambia el area del investigador"""
         self.area = area
-
-#--------------------------------------------------------------------------------------------
