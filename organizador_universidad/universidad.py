@@ -152,7 +152,6 @@ print("\n")
 print(programacion.mostrar_alumnos())
 
 #Aprobar asignaturas
-
 print("\nPablo aprueba Matematicas y Sistemas:\n")
 print("Antes:\n")
 print(pablo)
@@ -162,8 +161,8 @@ print("\nDespués:\n")
 print(pablo)
 print("\n")
 print(pablo.mostrar_asignaturas_aprobadas())
-#Cambio de departamento y area de investigación
 
+#Cambio de departamento y area de investigación
 print("\nCambiemos a Isabel de departamento y de área de investigación:\n")
 print("Antes:\n")
 print(i_isabel)
@@ -177,8 +176,8 @@ print("\nDespués:\n")
 print(i_isabel)
 print(dep1)
 print(dep3)
-#Borrar personas
 
+#Borrar personas
 print("\nBorremos al alumno Paco, que está matriculado de todas las asignaturas:\n")
 print("Antes:\n")
 print(paco)
@@ -214,4 +213,3 @@ upct.mostrar_departametos()
 upct.mostrar_profesores()
 upct.mostrar_alumnos()
 upct.mostrar_asignaturas()
-print("\n")

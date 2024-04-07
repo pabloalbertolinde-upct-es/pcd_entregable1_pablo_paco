@@ -123,9 +123,3 @@ def test_borrar():
     #vemos que los profesores no esten en el departamento en el que los hemos asignado
     assert profesor_prueba not in dep1.profesores_dep
     assert Investigador_prueba not in dep1.profesores_dep
-    
-
-
-    
-
-
