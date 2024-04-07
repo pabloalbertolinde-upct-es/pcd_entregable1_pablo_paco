@@ -3,6 +3,9 @@ from organizacion import Asignatura, Departamento
 
 class Universidad:
 
+    # La clase universidad sera la clase principal para el usuario, la mayoria del uso del
+    # Codigo se hara de estos metodos
+
     def __init__(self,nombre_uni):
         self.nombre_uni = nombre_uni
         self.ualumnos=[]

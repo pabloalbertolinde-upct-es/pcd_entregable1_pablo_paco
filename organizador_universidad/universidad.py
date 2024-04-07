@@ -1,5 +1,7 @@
 from main import Universidad
 
+#este archivo pretende mostrar todas las funciones disponibles
+
 #UPCT
 
 upct = Universidad("UPCT")
@@ -95,24 +97,27 @@ upct.asignar_persona_asignatura(i_paco, programacion)
 upct.asignar_persona_asignatura(p_jose, ml)
 
 print("Imprimiremos por pantalla algunas de las instancias para comprobar que se han creado correctamente:\n")
-print(Matematicas)
-print(programacion)
-print(i_isabel)
-print(p_jose)
-print(esteban)
-print(lucas)
-print(agueda)
-print(dep1)
-print(dep3)
+print(Matematicas,"\n")
+print(programacion,"\n")
+print(i_isabel,"\n")
+print(p_jose,"\n")
+print(esteban,"\n")
+print(lucas,"\n")
+print(agueda,"\n")
+print(dep1,"\n")
+print(dep3,"\n")
 
 #Estado de la universidad
 
-print(upct)
+print("\n",upct,"\n")
 upct.mostrar_departametos()
-upct.mostrar_profesores()
-upct.mostrar_alumnos()
-upct.mostrar_asignaturas()
 print("\n")
+upct.mostrar_profesores()
+print("\n")
+upct.mostrar_alumnos()
+print("\n")
+upct.mostrar_asignaturas()
+print("\n\n")
 
 #Nótese que en la práctica los métodos que no son de la clase universidad no serán usados por el usuario final,
 #de aquí en adelante se hace uso de ellos meramente para demostrar el correcto funcionamiento del sistema.
@@ -121,24 +126,33 @@ print("\n")
 print("Quitemos por ejemplo gente de Matematicas y programacion, empezando por los profesores isabel y jose:\n")
 print("Antes:\n")
 print(Matematicas.mostrar_profesores()) 
+print("\n")
 print(programacion.mostrar_profesores())
+print("\n")
 upct.desasignar_persona_asignatura(i_isabel, Matematicas)
+print("\n")
 upct.desasignar_persona_asignatura(p_jose, programacion)
+
 print("\nDespués:\n")
 print(Matematicas.mostrar_profesores())
 print(programacion.mostrar_profesores())
-print("\nQuitemos ahora alumnos de Matematicas (esteban y lucas) y programacion (agueda y lucas):\n")
+print("\n\nQuitemos ahora alumnos de Matematicas (esteban y lucas) y programacion (agueda y lucas):\n")
 print("Antes:\n")
 print(Matematicas.mostrar_alumnos())
+print("\n")
 print(programacion.mostrar_alumnos())
+print("\n")
 upct.desasignar_persona_asignatura(esteban, Matematicas)
 upct.desasignar_persona_asignatura(lucas, Matematicas)
 upct.desasignar_persona_asignatura(agueda, programacion)
 upct.desasignar_persona_asignatura(lucas, programacion)
 print("\nDespués:\n")
 print(Matematicas.mostrar_alumnos())
+print("\n")
 print(programacion.mostrar_alumnos())
+
 #Aprobar asignaturas
+
 print("\nPablo aprueba Matematicas y Sistemas:\n")
 print("Antes:\n")
 print(pablo)
@@ -146,12 +160,16 @@ upct.alumno_aprueba_asignatura(pablo, Matematicas)
 upct.alumno_aprueba_asignatura(pablo, Sistemas)
 print("\nDespués:\n")
 print(pablo)
+print("\n")
 print(pablo.mostrar_asignaturas_aprobadas())
 #Cambio de departamento y area de investigación
+
 print("\nCambiemos a Isabel de departamento y de área de investigación:\n")
 print("Antes:\n")
 print(i_isabel)
+print("\n")
 print(dep1)
+print("\n")
 print(dep3)
 upct.cambiar_profesor_dep(i_isabel, dep3)
 upct.cambiar_investigador_area(i_isabel, "materiales")
@@ -160,6 +178,7 @@ print(i_isabel)
 print(dep1)
 print(dep3)
 #Borrar personas
+
 print("\nBorremos al alumno Paco, que está matriculado de todas las asignaturas:\n")
 print("Antes:\n")
 print(paco)
